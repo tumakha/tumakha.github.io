@@ -15,7 +15,7 @@
     "webItems": [
       {
         "location": "system.top.navigation.bar",
-        "weight": 200,
+        "weight": 500,
         "conditions": [
           {
             "condition": "has_selected_project"
