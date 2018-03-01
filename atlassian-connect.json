@@ -1,25 +1,37 @@
 {
-  "name": "Hello World",
+  "name": "Top Menu Link - Create Issue",
   "description": "Atlassian Connect app",
-  "key": "com.example.myapp",
+  "key": "uk.tumakha.example.jira.plugin",
   "baseUrl": "https://tumakha.github.io",
   "vendor": {
-    "name": "Example, Inc.",
-    "url": "http://example.com"
+    "name": "Yuriy Tumakha",
+    "url": "https://tumakha.github.io"
   },
   "authentication": {
     "type": "none"
   },
   "apiVersion": 1,
   "modules": {
-    "generalPages": [
+    "webItems": [
       {
-        "url": "/helloworld.html",
-        "key": "hello-world",
         "location": "system.top.navigation.bar",
+        "styleClasses": [
+          "webitem",
+          "system-present-webitem",
+          "create-issue"
+        ],
+        "url": "/secure/CreateIssueDetails!init.jspa",
+        "context": "addon",
+        "target": {
+          "type": "page"
+        },
+        "tooltip": {
+          "value": "Create new issue"
+        },
         "name": {
-          "value": "Greeting"
-        }
+          "value": "Create Issue"
+        },
+        "key": "create-issue"
       }
     ]
   }
