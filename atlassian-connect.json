@@ -17,8 +17,7 @@
         "location": "system.top.navigation.bar",
         "styleClasses": [
           "webitem",
-          "system-present-webitem",
-          "create-issue"
+          "system-present-webitem"
         ],
         "url": "/secure/CreateIssueDetails!init.jspa",
         "context": "addon",
