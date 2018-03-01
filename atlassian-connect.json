@@ -20,12 +20,9 @@
           "system-present-webitem"
         ],
         "url": "/secure/CreateIssueDetails!init.jspa",
-        "context": "addon",
-        "target": {
-          "type": "page"
-        },
+        "context": "product",
         "tooltip": {
-          "value": "Create new issue"
+          "value": "Create New Issue"
         },
         "name": {
           "value": "Create Issue"
