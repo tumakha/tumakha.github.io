@@ -27,7 +27,7 @@
         "name": {
           "value": "Create Issue"
         },
-        "key": "create-issue"
+        "key": "create-new-issue"
       }
     ]
   }
