@@ -15,19 +15,20 @@
     "webItems": [
       {
         "location": "system.top.navigation.bar",
-        "styleClasses": [
-          "webitem",
-          "system-present-webitem"
-        ],
-        "url": "/secure/CreateIssue!default.jspa",
+        "condition": "has_selected_project",
+        "url": "/secure/CreateIssueDetails!init.jspa?pid={project.id}&issuetype=1",
         "context": "product",
         "tooltip": {
           "value": "Create New Issue"
         },
+        "key": "create-issue",
         "name": {
           "value": "Create Issue"
         },
-        "key": "create-new-issue"
+        "styleClasses": [
+          "webitem",
+          "system-present-webitem"
+        ]
       }
     ]
   }
