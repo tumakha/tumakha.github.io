@@ -19,7 +19,7 @@
           "webitem",
           "system-present-webitem"
         ],
-        "url": "/secure/CreateIssueDetails!init.jspa",
+        "url": "/secure/CreateIssueDetails!init.jspa?pid={project.id}",
         "context": "product",
         "tooltip": {
           "value": "Create New Issue"
