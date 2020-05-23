@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Name Discovery</title>
+</head>
+<body>
+
+<div id="name-discovery"></div>
+
+<!-- Load React. -->
+<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<!-- Don't use this in production: -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+'use strict';
+
+class NameDiscovery extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { items: [], text: '' };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>Name Discovery</h3>
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor="new-todo">
+            Name:
+          </label>
+          <input
+            id="new-todo"
+            onChange={this.handleChange}
+            value={this.state.text}
+          />
+          <button>
+            Search #{this.state.items.length + 1}
+          </button>
+        </form>
+        <NameResults items={this.state.items} />
+      </div>
+    );
+  }
+
+  handleChange(e) {
+    this.setState({ text: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    if (this.state.text.length === 0) {
+      return;
+    }
+    this.nameDiscovery(this, this.state.text);
+  }
+
+    nameDiscovery(comp, name) {
+        return fetch('https://api.genderize.io/?name=' + name).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            console.log(json);
+            fetch('https://api.nationalize.io/?name=' + name).then(function (response) {
+                return response.json();
+            }).then(function (json2) {
+                console.log(json2);
+                var output = json.name + " is " + json.gender + " - " + (json.probability * 100) + "% from ";
+                json2.country.forEach(c => {
+                  const country = countries.get(c.country_id);
+                  output += country + " (" + c.country_id + ") - " + Math.round(c.probability * 100) + "%, "
+                });
+                output = output.substring(0, output.length - 2)
+                const newItem = {
+                    text: output,
+                    id: Date.now()
+                };
+                comp.setState(state => ({
+                    items: state.items.concat(newItem),
+                    text: ''
+                }));
+            });
+        });
+    }
+}
+
+class NameResults extends React.Component {
+  render() {
+    return (
+      <ul>
+        {this.props.items.map(item => (
+          <li key={item.id}>{item.text}</li>
+        ))}
+      </ul>
+    );
+  }
+}
+
+ReactDOM.render(
+  <NameDiscovery />,
+  document.getElementById('name-discovery')
+);
+
+const countries = new Map();
+countries.set('AD', 'Andorra');
+countries.set('AE', 'United Arab Emirates');
+countries.set('AF', 'Afghanistan');
+countries.set('AG', 'Antigua and Barbuda');
+countries.set('AI', 'Anguilla');
+countries.set('AL', 'Albania');
+countries.set('AM', 'Armenia');
+countries.set('AO', 'Angola');
+countries.set('AQ', 'Antarctica');
+countries.set('AR', 'Argentina');
+countries.set('AS', 'American Samoa');
+countries.set('AT', 'Austria');
+countries.set('AU', 'Australia');
+countries.set('AW', 'Aruba');
+countries.set('AX', 'Åland Islands');
+countries.set('AZ', 'Azerbaijan');
+countries.set('BA', 'Bosnia and Herzegovina');
+countries.set('BB', 'Barbados');
+countries.set('BD', 'Bangladesh');
+countries.set('BE', 'Belgium');
+countries.set('BF', 'Burkina Faso');
+countries.set('BG', 'Bulgaria');
+countries.set('BH', 'Bahrain');
+countries.set('BI', 'Burundi');
+countries.set('BJ', 'Benin');
+countries.set('BL', 'Saint Barthélemy');
+countries.set('BM', 'Bermuda');
+countries.set('BN', 'Brunei Darussalam');
+countries.set('BO', 'Bolivia');
+countries.set('BQ', 'Bonaire');
+countries.set('BR', 'Brazil');
+countries.set('BS', 'Bahamas');
+countries.set('BT', 'Bhutan');
+countries.set('BV', 'Bouvet Island');
+countries.set('BW', 'Botswana');
+countries.set('BY', 'Belarus');
+countries.set('BZ', 'Belize');
+countries.set('CA', 'Canada');
+countries.set('CC', 'Cocos (Keeling) Islands');
+countries.set('CD', 'Congo, Democratic Republic of the');
+countries.set('CF', 'Central African Republic');
+countries.set('CG', 'Congo');
+countries.set('CH', 'Switzerland');
+countries.set('CI', "Côte d'Ivoire");
+countries.set('CK', 'Cook Islands');
+countries.set('CL', 'Chile');
+countries.set('CM', 'Cameroon');
+countries.set('CN', 'China');
+countries.set('CO', 'Colombia');
+countries.set('CR', 'Costa Rica');
+countries.set('CU', 'Cuba');
+countries.set('CV', 'Cabo Verde');
+countries.set('CW', 'Curaçao');
+countries.set('CX', 'Christmas Island');
+countries.set('CY', 'Cyprus');
+countries.set('CZ', 'Czechia');
+countries.set('DE', 'Germany');
+countries.set('DJ', 'Djibouti');
+countries.set('DK', 'Denmark');
+countries.set('DM', 'Dominica');
+countries.set('DO', 'Dominican Republic');
+countries.set('DZ', 'Algeria');
+countries.set('EC', 'Ecuador');
+countries.set('EE', 'Estonia');
+countries.set('EG', 'Egypt');
+countries.set('EH', 'Western Sahara');
+countries.set('ER', 'Eritrea');
+countries.set('ES', 'Spain');
+countries.set('ET', 'Ethiopia');
+countries.set('FI', 'Finland');
+countries.set('FJ', 'Fiji');
+countries.set('FK', 'Falkland Islands (Malvinas)');
+countries.set('FM', 'Micronesia (Federated States of)');
+countries.set('FO', 'Faroe Islands');
+countries.set('FR', 'France');
+countries.set('GA', 'Gabon');
+countries.set('GB', 'United Kingdom of Great Britain and Northern Ireland');
+countries.set('GD', 'Grenada');
+countries.set('GE', 'Georgia');
+countries.set('GF', 'French Guiana');
+countries.set('GG', 'Guernsey');
+countries.set('GH', 'Ghana');
+countries.set('GI', 'Gibraltar');
+countries.set('GL', 'Greenland');
+countries.set('GM', 'Gambia');
+countries.set('GN', 'Guinea');
+countries.set('GP', 'Guadeloupe');
+countries.set('GQ', 'Equatorial Guinea');
+countries.set('GR', 'Greece');
+countries.set('GS', 'South Georgia and the South Sandwich Islands');
+countries.set('GT', 'Guatemala');
+countries.set('GU', 'Guam');
+countries.set('GW', 'Guinea-Bissau');
+countries.set('GY', 'Guyana');
+countries.set('HK', 'Hong Kong');
+countries.set('HM', 'Heard Island and McDonald Islands');
+countries.set('HN', 'Honduras');
+countries.set('HR', 'Croatia');
+countries.set('HT', 'Haiti');
+countries.set('HU', 'Hungary');
+countries.set('ID', 'Indonesia');
+countries.set('IE', 'Ireland');
+countries.set('IL', 'Israel');
+countries.set('IM', 'Isle of Man');
+countries.set('IN', 'India');
+countries.set('IO', 'British Indian Ocean Territory');
+countries.set('IQ', 'Iraq');
+countries.set('IR', 'Iran (Islamic Republic of)');
+countries.set('IS', 'Iceland');
+countries.set('IT', 'Italy');
+countries.set('JE', 'Jersey');
+countries.set('JM', 'Jamaica');
+countries.set('JO', 'Jordan');
+countries.set('JP', 'Japan');
+countries.set('KE', 'Kenya');
+countries.set('KG', 'Kyrgyzstan');
+countries.set('KH', 'Cambodia');
+countries.set('KI', 'Kiribati');
+countries.set('KM', 'Comoros');
+countries.set('KN', 'Saint Kitts and Nevis');
+countries.set('KP', "Korea (Democratic People's Republic of)");
+countries.set('KR', 'Korea, Republic of');
+countries.set('KW', 'Kuwait');
+countries.set('KY', 'Cayman Islands');
+countries.set('KZ', 'Kazakhstan');
+countries.set('LA', "Lao People's Democratic Republic");
+countries.set('LB', 'Lebanon');
+countries.set('LC', 'Saint Lucia');
+countries.set('LI', 'Liechtenstein');
+countries.set('LK', 'Sri Lanka');
+countries.set('LR', 'Liberia');
+countries.set('LS', 'Lesotho');
+countries.set('LT', 'Lithuania');
+countries.set('LU', 'Luxembourg');
+countries.set('LV', 'Latvia');
+countries.set('LY', 'Libya');
+countries.set('MA', 'Morocco');
+countries.set('MC', 'Monaco');
+countries.set('MD', 'Moldova, Republic of');
+countries.set('ME', 'Montenegro');
+countries.set('MF', 'Saint Martin (French part)');
+countries.set('MG', 'Madagascar');
+countries.set('MH', 'Marshall Islands');
+countries.set('MK', 'North Macedonia');
+countries.set('ML', 'Mali');
+countries.set('MM', 'Myanmar');
+countries.set('MN', 'Mongolia');
+countries.set('MO', 'Macao');
+countries.set('MP', 'Northern Mariana Islands');
+countries.set('MQ', 'Martinique');
+countries.set('MR', 'Mauritania');
+countries.set('MS', 'Montserrat');
+countries.set('MT', 'Malta');
+countries.set('MU', 'Mauritius');
+countries.set('MV', 'Maldives');
+countries.set('MW', 'Malawi');
+countries.set('MX', 'Mexico');
+countries.set('MY', 'Malaysia');
+countries.set('MZ', 'Mozambique');
+countries.set('NA', 'Namibia');
+countries.set('NC', 'New Caledonia');
+countries.set('NE', 'Niger');
+countries.set('NF', 'Norfolk Island');
+countries.set('NG', 'Nigeria');
+countries.set('NI', 'Nicaragua');
+countries.set('NL', 'Netherlands');
+countries.set('NO', 'Norway');
+countries.set('NP', 'Nepal');
+countries.set('NR', 'Nauru');
+countries.set('NU', 'Niue');
+countries.set('NZ', 'New Zealand');
+countries.set('OM', 'Oman');
+countries.set('PA', 'Panama');
+countries.set('PE', 'Peru');
+countries.set('PF', 'French Polynesia');
+countries.set('PG', 'Papua New Guinea');
+countries.set('PH', 'Philippines');
+countries.set('PK', 'Pakistan');
+countries.set('PL', 'Poland');
+countries.set('PM', 'Saint Pierre and Miquelon');
+countries.set('PN', 'Pitcairn');
+countries.set('PR', 'Puerto Rico');
+countries.set('PS', 'Palestine, State of');
+countries.set('PT', 'Portugal');
+countries.set('PW', 'Palau');
+countries.set('PY', 'Paraguay');
+countries.set('QA', 'Qatar');
+countries.set('RE', 'Réunion');
+countries.set('RO', 'Romania');
+countries.set('RS', 'Serbia');
+countries.set('RU', 'Russian Federation');
+countries.set('RW', 'Rwanda');
+countries.set('SA', 'Saudi Arabia');
+countries.set('SB', 'Solomon Islands');
+countries.set('SC', 'Seychelles');
+countries.set('SD', 'Sudan');
+countries.set('SE', 'Sweden');
+countries.set('SG', 'Singapore');
+countries.set('SH', 'Saint Helena, Ascension and Tristan da Cunha');
+countries.set('SI', 'Slovenia');
+countries.set('SJ', 'Svalbard and Jan Mayen');
+countries.set('SK', 'Slovakia');
+countries.set('SL', 'Sierra Leone');
+countries.set('SM', 'San Marino');
+countries.set('SN', 'Senegal');
+countries.set('SO', 'Somalia');
+countries.set('SR', 'Suriname');
+countries.set('SS', 'South Sudan');
+countries.set('ST', 'Sao Tome and Principe');
+countries.set('SV', 'El Salvador');
+countries.set('SX', 'Sint Maarten (Dutch part)');
+countries.set('SY', 'Syrian Arab Republic');
+countries.set('SZ', 'Eswatini');
+countries.set('TC', 'Turks and Caicos Islands');
+countries.set('TD', 'Chad');
+countries.set('TF', 'French Southern Territories');
+countries.set('TG', 'Togo');
+countries.set('TH', 'Thailand');
+countries.set('TJ', 'Tajikistan');
+countries.set('TK', 'Tokelau');
+countries.set('TL', 'Timor-Leste');
+countries.set('TM', 'Turkmenistan');
+countries.set('TN', 'Tunisia');
+countries.set('TO', 'Tonga');
+countries.set('TR', 'Turkey');
+countries.set('TT', 'Trinidad and Tobago');
+countries.set('TV', 'Tuvalu');
+countries.set('TW', 'Taiwan, Province of China');
+countries.set('TZ', 'Tanzania, United Republic of');
+countries.set('UA', 'Ukraine');
+countries.set('UG', 'Uganda');
+countries.set('UM', 'United States Minor Outlying Islands');
+countries.set('US', 'United States of America');
+countries.set('UY', 'Uruguay');
+countries.set('UZ', 'Uzbekistan');
+countries.set('VA', 'Holy See');
+countries.set('VC', 'Saint Vincent and the Grenadines');
+countries.set('VE', 'Venezuela (Bolivarian Republic of)');
+countries.set('VG', 'Virgin Islands (British)');
+countries.set('VI', 'Virgin Islands (U.S.)');
+countries.set('VN', 'Viet Nam');
+countries.set('VU', 'Vanuatu');
+countries.set('WF', 'Wallis and Futuna');
+countries.set('WS', 'Samoa');
+countries.set('YE', 'Yemen');
+countries.set('YT', 'Mayotte');
+countries.set('ZA', 'South Africa');
+countries.set('ZM', 'Zambia');
+countries.set('ZW', 'Zimbabwe');
+
+</script>
+<!--
+  Note: this page is a great way to try React but it's not suitable for production.
+  It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+  Read this section for a production-ready setup with JSX:
+  https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+  In a larger project, you can use an integrated toolchain that includes JSX instead:
+  https://reactjs.org/docs/create-a-new-react-app.html
+
+  You can also use React without JSX, in which case you can remove Babel:
+  https://reactjs.org/docs/react-without-jsx.html
+-->
+</body>
+</html>
