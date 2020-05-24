@@ -14,6 +14,8 @@
 <script type="text/javascript">
 'use strict';
 
+const el = React.createElement;
+
 class NameDiscovery extends React.Component {
   constructor(props) {
     super(props);
@@ -26,15 +28,15 @@ class NameDiscovery extends React.Component {
   }
 
   render() {
-    return React.createElement("div", null, React.createElement("h3", null, "Name Discovery"), React.createElement("form", {
+    return el("div", null, el("h3", null, "Name Discovery"), el("form", {
       onSubmit: this.handleSubmit
-    }, React.createElement("label", {
+    }, el("label", {
       htmlFor: "new-todo"
-    }, "Name:"), React.createElement("input", {
+    }, "Name:"), el("input", {
       id: "new-todo",
       onChange: this.handleChange,
       value: this.state.text
-    }), React.createElement("button", null, "Search #", this.state.items.length + 1)), React.createElement(NameResults, {
+    }), el("button", null, "Search #", this.state.items.length + 1)), el(NameResults, {
       items: this.state.items
     }));
   }
@@ -56,14 +58,14 @@ class NameDiscovery extends React.Component {
   }
 
   nameDiscovery(comp, name) {
-    return fetch('https://api.genderize.io/?name=' + name).then(function (response) {
-      return response.json();
-    }).then(function (json) {
-      console.log(json);
-      fetch('https://api.nationalize.io/?name=' + name).then(function (response) {
-        return response.json();
-      }).then(function (json2) {
-        console.log(json2);
+    Promise.all(publicAPIs.map(url =>
+      fetch(url + name)
+        .then(response => response.json())
+    ))
+    .then(data => {
+        console.log(data);
+        const json = data[0];
+        const json2 = data[1];
         var output = json.name + " is " + json.gender + " - " + json.probability * 100 + "% from ";
         json2.country.forEach(c => {
           const country = countries.get(c.country_id);
@@ -78,7 +80,6 @@ class NameDiscovery extends React.Component {
           items: state.items.concat(newItem),
           text: ''
         }));
-      });
     });
   }
 
@@ -86,14 +87,20 @@ class NameDiscovery extends React.Component {
 
 class NameResults extends React.Component {
   render() {
-    return React.createElement("ul", null, this.props.items.map(item => React.createElement("li", {
+    return el("ul", null, this.props.items.map(item => el("li", {
       key: item.id
     }, item.text)));
   }
 
 }
 
-ReactDOM.render( React.createElement(NameDiscovery, null), document.getElementById('name-discovery'));
+ReactDOM.render( el(NameDiscovery, null), document.getElementById('name-discovery'));
+
+const publicAPIs = [
+  'https://api.genderize.io/?name=',
+  'https://api.nationalize.io/?name='
+];
+
 const countries = new Map();
 countries.set('AD', 'Andorra');
 countries.set('AE', 'United Arab Emirates');
