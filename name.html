@@ -31,9 +31,10 @@ class NameDiscovery extends React.Component {
     return el("div", null, el("h3", null, "Name Discovery"), el("form", {
       onSubmit: this.handleSubmit
     }, el("label", {
-      htmlFor: "new-todo"
+      htmlFor: "name"
     }, "Name:"), el("input", {
-      id: "new-todo",
+      id: "name",
+      autofocus: "true",
       onChange: this.handleChange,
       value: this.state.text
     }), el("button", null, "Search #", this.state.items.length + 1)), el(NameResults, {
