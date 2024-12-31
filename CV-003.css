@@ -24,6 +24,7 @@ body {
 
 .profile-picture {
     padding-bottom: 30px;
+    text-align: center;
 }
 
 .profile-picture img {
@@ -42,12 +43,15 @@ body {
 @media (max-width: 800px) {
     .sidebar {
         display: block;
-        width: 90%;
-        padding-bottom: 0;
+        width: 100%;
+        padding: 0;
     }
     .main-panel {
         display: block;
         width: 100%;
         padding-top: 0;
+    }
+    .profile-picture {
+        padding-top: 30px;
     }
 }
