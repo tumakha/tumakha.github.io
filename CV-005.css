@@ -1,0 +1,122 @@
+body {
+    background-color: #067;
+}
+
+.main-content {
+    background-color: #387;
+    display: table;
+    table-layout: fixed;
+    padding-right: 0;
+}
+
+.sidebar {
+    width: 250px;
+    padding: 30px;
+    display: table-cell;
+    vertical-align: top;
+    box-sizing: content-box;
+}
+
+.main-panel {
+    background-color: #FFF;
+    padding-right: 30px;
+    display: table-cell;
+    vertical-align: top;
+}
+
+.profile-picture {
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.profile-picture img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sidebar-contacts {
+    display: none;
+}
+
+.main-contacts {
+    display: block;
+}
+
+.sidebar-section {
+    color: #FFF;
+    border-top: 1px solid #000;
+    padding-top: 5px;
+    margin-bottom: 35px;
+    text-align: justify;
+}
+
+.first-name {
+    color: #387;
+}
+
+.main-contacts {
+    padding: 30px;
+}
+
+.main-section {
+    color: #000;
+    border-top: 1px solid #387;
+    padding-top: 5px;
+    padding-left: 30px;
+    margin-bottom: 35px;
+    text-align: justify;
+}
+
+.main-section .h4 {
+    color: #387;
+    font-weight: bold;
+}
+
+.main-section a {
+    color: #000;
+}
+
+@media (max-width: 780px) {
+    .main-content {
+        padding-right: 12px;
+    }
+    .sidebar {
+        display: block;
+        width: 100%;
+        padding: 0;
+    }
+    .main-panel {
+        background-color: #387;
+        padding-right: 0;
+        display: block;
+    }
+    .sidebar-contacts {
+        display: block;
+    }
+    .main-contacts {
+        display: none;
+    }
+    .main-section {
+        color: #FFF;
+        border-top: 1px solid #000;
+        padding-top: 5px;
+        padding-left: 0;
+        margin-bottom: 35px;
+        text-align: justify;
+    }
+    .main-section .h4 {
+        color: #FFF;
+        font-weight: normal;
+    }
+    .main-section a {
+        color: #FFF;
+    }
+    .main-panel {
+        display: block;
+        width: 100%;
+        padding-top: 0;
+    }
+    .profile-picture {
+        padding-top: 30px;
+    }
+}

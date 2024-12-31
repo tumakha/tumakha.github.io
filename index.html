@@ -11,7 +11,7 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Bootstrap Font Icon CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="CV-004.css" rel="stylesheet">
+    <link href="CV-005.css" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
@@ -25,7 +25,7 @@
         <div class="profile-picture">
             <img width="250" height="250" src="img/Yuriy_Tumakha.jpg" alt="Yuriy Tumakha"/>
         </div>
-        <div class="sidebar-section">
+        <div class="sidebar-section sidebar-contacts">
             <p class="h4 text-uppercase">Yuriy Tumakha</p>
             <p><i class="bi-envelope"></i> <a href="mailto:yuriy@tumakha.uk" class="link-light">yuriy@tumakha.uk</a></p>
             <p><i class="bi-telephone"></i> <a href="tel:07476145541" class="link-light">+447476145541</a></p>
@@ -55,17 +55,130 @@
             <p class="h4 text-uppercase">Profiles</p>
             <ul class="list-unstyled">
                 <li><i class="bi-github"></i> <a href="https://github.com/tumakha" target="GitHub_profile"
-                       class="link-light link-offset-2">GitHub</a></li>
+                                                 class="link-light link-offset-2">GitHub</a></li>
                 <li><i class="bi-linkedin"></i> <a href="https://www.linkedin.com/in/tumakha" target="LinkedIn_profile"
-                       class="link-light link-offset-2">LinkedIn</a></li>
-                <li><i class="bi-stack-overflow"></i> <a href="https://stackoverflow.com/users/3608312/yuriy-tumakha" target="StackOverflow_profile"
-                       class="link-light link-offset-2">Stack Overflow</a></li>
+                                                   class="link-light link-offset-2">LinkedIn</a></li>
+                <li><i class="bi-stack-overflow"></i> <a href="https://stackoverflow.com/users/3608312/yuriy-tumakha"
+                                                         target="StackOverflow_profile"
+                                                         class="link-light link-offset-2">Stack Overflow</a></li>
             </ul>
         </div>
     </div>
     <div class="main-panel">
-        <iframe id="cv-frame" width="100%" height="1640"
-                src="https://docs.google.com/document/d/e/2PACX-1vRA0zuovTLJyAL5tx1s08c6rEan405NDHexIgIb7k_lDTJX1MLh7GHAahU7SJ9EYnPddPsFqce18W5w/pub?embedded=true"></iframe>
+        <div class="main-contacts">
+            <p class="h1 fw-bold first-name">Yuriy</p>
+            <p class="h1 fw-bold pb-4">Tumakha</p>
+            <ul class="list-unstyled">
+                <li><i class="bi-telephone-fill"></i> <a href="tel:07476145541" class="link-dark">+447476145541</a></li>
+                <li><i class="bi-envelope-fill"></i> <a href="mailto:yuriy@tumakha.uk" class="link-dark">yuriy@tumakha.uk</a>
+                </li>
+                <li><i class="bi-geo-alt-fill"></i> London, UK</li>
+            </ul>
+        </div>
+        <div class="main-section">
+            <p class="h4 text-uppercase mb-3">Work Experience</p>
+            <ul class="list-unstyled">
+                <li>09/2021 - now</li>
+                <li><strong>Scala Developer (Contract) - HMRC</strong> | London, UK</li>
+                <li>Valuation Office Agency microservices support and development.</li>
+                <li>Scala, Cats, Play Framework, Akka, MongoDB</li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>09/2020 - 09/2021</li>
+                <li><strong>Senior Java/Scala Developer - iPlato Healthcare</strong> | London, UK</li>
+                <li><a target="mygp" href="https://mygp.com">https://mygp.com</a> back-end microservices</li>
+                <li>AWS, Microservices, Docker,  Scala, Java 11, Akka, Akka Http, elastic4s, DynamoDB, Debezium, Spring Boot/Cloud, Consul, Elasticsearch, Kafka, RabbitMQ, MySQL</li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>08/2019 - 02/2020</li>
+                <li><strong>Senior Software Engineer - Asset Control</strong> | London, UK</li>
+                <li>Scala, Java, AWS, Kubernetes, Docker, Hazelcast, Apache Spark, Akka, Play, Kafka, Cassandra</li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>04/2018 - 06/2019</li>
+                <li><strong>Senior Java Software Engineer - Tantalum Corporation</strong> | London, UK</li>
+                <li>Telematics Platform development.</li>
+                <li>Java 8, Microservices, AWS, Spring Boot, Spring Cloud, Consul, Marathon, Kafka, Cassandra</li>
+                <li>Implemented by me the following microservices:</li>
+                <li><strong>api-subscriptions</strong> - Asynchronous integration with company ATT to synchronize users profiles and subscriptions</li>
+                <li><strong>svc-ecosystems-gateway</strong> - Integration with Harman endpoints to get device status/change Wi-Fi settings</li>
+                <li><strong>svc-trip-batch</strong> - Converting trip telematics data to CSV format to calculate driving score by Octo Telematics</li>
+                <li><strong>api-device-administration</strong> - REST API to get device data, associate with user, enable Wi-Fi, cancel registration</li>
+                <li><strong>api-device-status</strong> - REST API to get current comprehensive device status and status changes history</li>
+                <li><strong>api-admin-router</strong> - Entry point for all REST APIs used by Support Portal</li>
+                <li><strong>cmd-sender</strong> - Application to send in free form messages and push notifications to users</li>
+                <li><strong>sls-monitoring</strong> - Microservices monitoring Lambda deployed by Serverless framework <a target="serverless" href="https://serverless.com">https://serverless.com</a></li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>07/2017 - 03/2018</li>
+                <li><strong>Scala Developer (Contract) - EileanTech Ltd</strong> | London, UK</li>
+                <li>Implemented <a target="archipelago" href="https://eileantech.com/knowledge-base/an-introduction-to-archipelago/">Archipelago framework</a> integration for Database, JMS, HTTP, JSON, XML and sort/aggregate/transform components.</li>
+                <li>Scala, Akka, Slick, scalatest, SBT, Git, JMS, JSON, XML</li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>02/2017 - 06/2017</li>
+                <li><strong>Software Engineer - 10x Banking</strong> | London, UK</li>
+                <li>Java 8, Maven, AWS, Amazon SQS, DynamoDB, Activiti workflow</li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>02/2014 - 01/2017</li>
+                <li><strong>Senior Java Developer - Freelance</strong></li>
+                <li>Java 8, Camel, Spring, JPA, Spring MVC, Scala, Akka, SBT, Play framework, JIRA plugin</li>
+                <li>Dashboard to monitor and control Wind Turbines. (Java 8, Spring Boot, SOAP, AngularJS)</li>
+                <li>Yellowfin BI plugins views for REST APIs (Java 8, yellowfinbi-7.2, retrofit-2, okhttp-3, gson)</li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>09/2013 - 01/2014</li>
+                <li><strong>Senior Java Developer - Epam Systems</strong> | Kyiv, Ukraine</li>
+                <li>Implemented new features for bank trades processing. Improved test coverage.</li>
+                <li>IBM Java 5, Maven, Spring, Hibernate, JMS, XML, XSLT, JUnit, TDD, Agile</li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>01/2012 - 05/2013</li>
+                <li><strong>Senior Java Developer - Ciklum</strong> | Kyiv, Ukraine</li>
+                <li>Implemented from scratch Players Campaign management solution.</li>
+                <li>Java 7, Oracle, Hibernate, Spring, JPA, REST, ActiveMQ, Tapestry, TDD, Agile</li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>12/2007 - 01/2012</li>
+                <li><strong>Senior Java Developer - Thomson Reuters</strong> | Kyiv, Ukraine</li>
+                <li>Implemented new features for Thomson Reuters commercial portals and internal services.</li>
+                <li>Java 6-7, Hibernate, JPA, Spring, Web Services, Maven, JUnit, TDD, Agile</li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>12/2006 - 12/2007</li>
+                <li><strong>Senior Java Developer - Softline</strong> | Kyiv, Ukraine</li>
+                <li>Developed web-application for managing profiles, import/export XML by HTTPS, FTP.</li>
+                <li>Java 6, J2EE, MULE ESB, Web Services, JUnit, Cactus, Ant</li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>02/2006 - 12/2006</li>
+                <li><strong>Java Developer - Luxoft</strong> | Kyiv, Ukraine</li>
+                <li>Developed web-application for internal use on ChNPP. It is designed to work with an electronic archive of documents, and integration with the monitoring system of object "Shelter".</li>
+                <li>Java 5, J2EE, Servlets, JSP, Struts, Oracle PL/SQL, Oracle CM SDK</li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>03/2005 - 12/2005</li>
+                <li><strong>PHP Developer - MitriDAT</strong> | Kyiv, Ukraine</li>
+                <li><a target="smsportal" href="https://smsportal.media24.no">https://smsportal.media24.no</a> - SMS Portal for bulk message sending, postponed sending, websites integration.</li>
+                <li>PHP, DHTML, MySQL, XML, XSL</li>
+            </ul>
+        </div>
+        <div class="main-section">
+            <p class="h4 text-uppercase mb-3">Education</p>
+            <ul class="list-unstyled">
+                <li>04/2017</li>
+                <li><strong>Coursera</strong> | online</li>
+                <li>Big Data Analysis with Scala and Spark (<a target="coursera"
+                                                               href="https://www.coursera.org/account/accomplishments/verify/KSUENLP7B886">License
+                    KSUENLP7B886</a>)
+                </li>
+            </ul>
+            <ul class="list-unstyled">
+                <li>1997 - 2002</li>
+                <li><strong>Ternopil Ivan Puluj National Technical University</strong> | Ternopil, Ukraine</li>
+            </ul>
+        </div>
     </div>
 </div>
 
