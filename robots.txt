@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /ads.txt
+Disallow: /name.html
+Allow: /$
+Allow: /download/*.pdf$
+Allow: /download/*.docx$
+Allow: /img/Yuriy_Tumakha.jpg
+
+Sitemap: https://tumakha.uk/sitemap.xml
